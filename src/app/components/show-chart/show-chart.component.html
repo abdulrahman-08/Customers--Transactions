@@ -1,0 +1,42 @@
+<div class="container text-center m-auto">
+  <h2 style="color: #DF909E;font-weight: 600;" class=" mt-5">Transaction Chart For  <span class="text-danger">{{userData.customers[customerId-1].name}}</span></h2>
+  <div class="row g-3 ">
+    <div class="col-md-6">
+      <div class="chart-container mt-5 shadow  bg-white " >
+        <canvas id="mychartBar">{{chartBar}}</canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="chart-container mt-5 shadow  bg-white " >
+        <canvas id="mychartLine">{{chartLine}}</canvas>
+      </div>
+    </div>
+  </div>
+  <table class="table shadow p-2 text-center fw-bold rounded mt-5  table-bordered border-danger">
+    <thead class="table-danger" >
+      <tr  >
+        <th scope="col">Customer Id</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Transactions Id</th>
+        <th scope="col">Transactions Date</th>
+        <th scope="col">Transactions Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td class="table-danger">{{ userData.customers[customerId-1].id }}</td>
+        <td>{{userData.customers[customerId-1].name }}</td>
+        <td>
+          <span class="d-block mt-2" *ngFor="let transaction of  transactions">{{ transaction.id }}</span>
+        </td>
+        <td >
+          <span class="d-block mt-2"   *ngFor="let transaction of  transactions">{{ transaction.date }}</span>
+        </td>
+        <td >
+          <span  class="d-block mt-2" *ngFor="let transaction of  transactions">{{ transaction.amount }}</span>
+        </td>
+      
+      </tr>
+    </tbody>
+  </table>
+</div>

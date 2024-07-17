@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+    <h1  class="m-5 text-dark">Customers Transactions</h1>
+</div>
+<section class="container text-center m-auto">
+<div class="g-5  rounded-5 row m-auto">
+    <div class="col-md-6 bg-body d-flex shadow justify-content-center text-center">
+        <i style="color: #DF909E;"class="fa-solid fa-users fa-2x   m-4"></i>
+        <ul class="list-unstyled text-center mt-3">
+            <li>
+                <h3 style="color: #DF909E;" class="fw-bold">Total Customers
+                </h3>
+            </li>
+            <li><h3   class="fw-bold text-dark">
+                {{customers.length}}
+            </h3></li>
+        </ul>
+    </div>
+    <div class="col-md-6 bg-body d-flex shadow justify-content-center  text-center">
+        <i style="color: #DF909E;" class="fa-solid fa-money-bill-transfer fa-2x   m-4"></i>
+                <ul class="list-unstyled text-center mt-3">
+            <li>
+                <h3  style="color: #DF909E;" class="fw-bold">Total Transactions
+                </h3>
+            </li>
+            <li><h3   class="fw-bold text-dark">
+                {{transactions.length}}
+            </h3></li>
+        </ul>
+    </div>
+   </div>
+</section>
+<section>
+    <div class="container mt-5">
+        <div class="">
+            <div class="row g-2 ">
+                <div class="col-md-6">
+                    <div>
+                        <input type="text" placeholder="Search by name" [(ngModel)]="searchTerm"  class=" border-danger form-control mb-3" (input)="searchCustomer(searchTerm)">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <input type="text" placeholder="Search by amount" [(ngModel)]="searchAmount"  class=" border-danger form-control mb-3" (input)="searchByAmount(searchAmount)">
+                    </div>
+                </div>
+            </div>
+        </div>
+          <table class="table shadow p-2 text-center fw-bold rounded  table-bordered border-danger">
+        <thead class="table-danger" >
+          <tr  >
+            <th scope="col">Customer Id</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Transactions Id</th>
+            <th scope="col">Transactions Date</th>
+            <th scope="col">Transactions Amount</th>
+            <th scope="col">More Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of filteredCustomers">
+            <td class="table-danger">{{ customer.id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>
+              <span class="d-block mt-2" *ngFor="let transaction of  getTransactions(customer.id)">{{ transaction.id }}</span>
+            </td>
+            <td >
+              <span class="d-block mt-2"   *ngFor="let transaction of  getTransactions(customer.id)">{{ transaction.date }}</span>
+            </td>
+            <td >
+              <span  class="d-block mt-2" *ngFor="let transaction of  getTransactions(customer.id)">{{ transaction.amount }}</span>
+            </td>
+            <td>                  <a style="color: #DF909E;" class="text-decoration-none  fs-6 mt-3" [routerLink]="['/showChart', customer.id]">View the chart</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+   
+</section>
+
+
+
+
